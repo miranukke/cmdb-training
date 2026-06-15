@@ -11,14 +11,6 @@
     {
       "url": "https://raw.githubusercontent.com/farnous/snowtest/main/Exams/CIS_DF_3_FINAL.json",
       "title": "CIS - Data Foundations (CMDB & CSDM) 3 "
-    },
-    {
-      "url": "https://raw.githubusercontent.com/farnous/snowtest/main/Exams/CIS_DF_4_FINAL.json",
-      "title": "CIS - Data Foundations (CMDB & CSDM) 4 "
-    },
-    {
-      "url": "https://raw.githubusercontent.com/farnous/snowtest/main/Exams/CIS_DF_5_FINAL.json",
-      "title": "CIS - Data Foundations (CMDB & CSDM) 5 "
     }
   ]
 }
