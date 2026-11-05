@@ -9,13 +9,13 @@ const files = Object.fromEntries(
 
 describe('Exams/exams.config.json', () => {
   it('lists only files that exist, and every listed exam loads and is fully playable', async () => {
-    // Serve the repo files through the real loader, exactly as the app does with ?source=local.
+    // Serve the repo files through the real loader, exactly as the deployed app loads them.
     const fakeFetch = (async (input: RequestInfo | URL) => {
       const name = String(input).split('/').pop()!;
       return name in files ? new Response(JSON.stringify(files[name])) : new Response('missing', { status: 404 });
     }) as typeof fetch;
 
-    const source = resolveExamSource({ dev: true, search: '' });
+    const source = resolveExamSource();
     const res = await loadConfiguredExams(source, {}, fakeFetch);
 
     expect(res.failed).toEqual([]);

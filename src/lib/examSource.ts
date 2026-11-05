@@ -1,27 +1,22 @@
 import type { Exam, ExamFile, ExamStore } from '../domain/types';
 
-export const DEFAULT_CONFIG_URL = 'https://raw.githubusercontent.com/farnous/snowtest/main/Exams/exams.config.json';
-
 export interface ExamSource {
   configUrl: string;
-  /** Maps a URL from the config to the URL actually fetched (local mode serves bundled copies). */
+  /** Maps a URL from the config to the URL actually fetched. */
   resolve: (url: string) => string;
   label: string;
 }
 
 /**
  * Where exams come from:
- *  - VITE_EXAMS_CONFIG_URL (build-time override), else
- *  - the bundled /Exams copies in `vite dev` or with `?source=local`, else
- *  - the live files on GitHub (same as the original app, so progress IDs don't change).
+ *  - VITE_EXAMS_CONFIG_URL, if set at build time (URLs in that config are fetched as-is), else
+ *  - the /Exams files deployed with this build (dev server, GitHub Pages, any fork). The config's
+ *    URLs are mapped to those local copies by file name, so exam IDs, which are derived from the
+ *    config URLs, stay the same as in the original app and saved progress still matches.
  */
-export function resolveExamSource(opts: { envConfigUrl?: string; dev: boolean; search: string }): ExamSource {
+export function resolveExamSource(opts: { envConfigUrl?: string } = {}): ExamSource {
   if (opts.envConfigUrl) return { configUrl: opts.envConfigUrl, resolve: (u) => u, label: 'configured source' };
-  const local = opts.dev || new URLSearchParams(opts.search).get('source') === 'local';
-  if (local) {
-    return { configUrl: 'Exams/exams.config.json', resolve: (u) => `Exams/${u.split('/').pop()}`, label: 'bundled files' };
-  }
-  return { configUrl: DEFAULT_CONFIG_URL, resolve: (u) => u, label: 'GitHub' };
+  return { configUrl: 'Exams/exams.config.json', resolve: (u) => `Exams/${u.split('/').pop()}`, label: 'this site' };
 }
 
 /** Stable ID per exam URL; identical to the original app so stored progress still matches. */

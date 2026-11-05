@@ -7,11 +7,15 @@ Practice quiz and progress tracker for the ServiceNow **Certified Implementation
 - **Practice modes**: per exam (all / not yet correct / wrong / new, in order or shuffled), single question from the question map, domain drill, smart review (mistakes first, then unmastered questions), fix mistakes, favorites, and a **mock exam** (75 distinct questions weighted like the blueprint, 90-minute timer, results at the end).
 - Keyboard: `A–E`/`1–9` select · `Enter` check/next · `←/→` move · `F` favorite · `Esc` exit. Drag-and-drop questions also work by tapping an item, then a target (touch screens).
 - Light/dark theme (follows the OS, toggle in the header).
+- **Works offline / installable**: a service worker precaches the app and every exam, so after the first visit it runs without a connection; it can also be installed as an app from the browser.
+
+Live: **https://miranukke.github.io/cmdb-training/**
 
 ## Project structure
 
 ```
 Exams/                     Exam JSON files + exams.config.json (unchanged location; edit/upload as before)
+public/                    Web app manifest + icon (copied as-is)
 index.html                 Vite entry
 src/
   main.tsx, App.tsx        Bootstrap and screen switch
@@ -22,6 +26,7 @@ src/
     stats.ts               Per-question stats, mastery, streaks, migration from the old app
     overview.ts            Domain progress and weighted readiness
     queues.ts              Filters, de-duplication, smart review, mock exam builder
+  pwa/                     Service worker template + registration
   lib/                     Browser-facing helpers
     examSource.ts          Loads exams (always re-fetches; falls back to cache)
     storage.ts             localStorage access (keys compatible with the original app)
@@ -46,19 +51,19 @@ On Windows, if the browser can't reach `localhost:5173`, run `npm run dev -- --h
 
 ## Where exams come from
 
-| Situation | Source |
-|---|---|
-| `npm run dev`, or `?source=local` in the URL | Bundled copies of `/Exams` |
-| `VITE_EXAMS_CONFIG_URL` set at build time | That config URL |
-| Default (production) | `Exams/exams.config.json` on GitHub (raw), same as the original app |
+The app loads `Exams/exams.config.json` and the exam files **deployed with the site** (the build copies `/Exams` into `dist/`), so a fork or a Pages deployment always shows exactly the exams in that commit. Each URL in the config is mapped to the local copy by file name. To load exams from somewhere else instead, set `VITE_EXAMS_CONFIG_URL` at build time; the URLs in that config are then fetched as-is.
 
-Exam IDs are derived from the URL in the config exactly as before, so progress saved by the original app carries over. Exams are re-downloaded on every visit, so answer-key fixes reach everyone.
+Exam IDs are derived from the URLs in the config exactly as in the original app, so progress saved by it carries over (on the same site). Exams are re-checked on every visit, so answer-key fixes reach everyone.
 
 To make an exam available, add it to `Exams/exams.config.json`.
 
 ### Question format
 
 Each file in `/Exams` is `{ "exam_metadata": { "title": … }, "questions": [ … ] }`. A question has `id`, `type` (`single_choice` | `multiple_choice` | `drag_and_drop`), `question`, and either `choices` + `correct_answers` (+ `select_count`) or `items` + `targets` + `correct_mapping`. Optional: `explanation` (end it with `Source: <url>; <url>` to show source chips), `data_table`, `note`, `tags`, and `domain` (`configuration` | `ingest` | `govern` | `insight` | `csdm`) to override the automatic blueprint classification.
+
+## Offline support (service worker)
+
+`src/pwa/sw.template.js` is turned into `dist/sw.js` at build time by a small plugin in `vite.config.ts`, which injects a precache list (app shell, JS/CSS, Latin fonts, `public/` files and all exams) and a version hash of their content. Page loads and exam data are network-first with a cache fallback (always fresh when online); hashed assets are cache-first. Every deploy that changes anything gets a new cache and the old one is removed. The worker is registered only in production builds (`src/pwa/registerServiceWorker.ts`), never in `npm run dev`. `public/manifest.webmanifest` makes the site installable.
 
 ## Deployment (GitHub Pages)
 

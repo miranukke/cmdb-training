@@ -1,0 +1,14 @@
+{
+  "name": "CIS-DF Trainer",
+  "short_name": "CIS-DF",
+  "description": "Practice quiz and progress tracker for the ServiceNow CIS - Data Foundations (CMDB & CSDM) exam.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0a0d12",
+  "theme_color": "#0a0d12",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

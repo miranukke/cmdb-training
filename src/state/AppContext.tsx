@@ -75,11 +75,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const refreshExams = useCallback(async () => {
-    const source = resolveExamSource({
-      envConfigUrl: import.meta.env.VITE_EXAMS_CONFIG_URL,
-      dev: import.meta.env.DEV,
-      search: window.location.search,
-    });
+    const source = resolveExamSource({ envConfigUrl: import.meta.env.VITE_EXAMS_CONFIG_URL });
     dispatch({ type: 'sync/started' });
     try {
       const res = await loadConfiguredExams(source, stateRef.current.exams);

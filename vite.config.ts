@@ -1,4 +1,5 @@
 /// <reference types="vitest/config" />
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -34,10 +35,49 @@ function examsPlugin(): Plugin {
   };
 }
 
+/**
+ * Emits sw.js from src/pwa/sw.template.js with a precache list of everything the app needs offline
+ * (app shell, JS/CSS, public files, exams, Latin fonts) and a version derived from their content,
+ * so every deploy that changes anything installs a fresh cache.
+ */
+function serviceWorkerPlugin(): Plugin {
+  return {
+    name: 'cisdf-service-worker',
+    apply: 'build',
+    enforce: 'post',
+    generateBundle(_options, bundle) {
+      const isFont = (f: string) => /\.(woff2?|ttf)$/.test(f);
+      // Other font subsets/formats are cached on first use instead of up front.
+      const wantedFont = (f: string) => /\.woff2$/.test(f) && /-latin-(?!ext)/.test(f);
+      const files = Object.keys(bundle)
+        .filter((f) => !f.endsWith('.map') && (!isFont(f) || wantedFont(f)))
+        .sort();
+      const publicDir = resolve(ROOT, 'public');
+      const publicFiles = existsSync(publicDir) ? readdirSync(publicDir) : [];
+      const precache = ['./', ...new Set([...files, ...publicFiles, 'index.html'])].map((f) => (f === './' ? f : `./${f}`));
+
+      const template = readFileSync(resolve(ROOT, 'src/pwa/sw.template.js'), 'utf8');
+      const hash = createHash('sha256').update(template);
+      for (const f of files) {
+        const out = bundle[f];
+        hash.update(f).update(out.type === 'chunk' ? out.code : typeof out.source === 'string' ? out.source : Buffer.from(out.source));
+      }
+      for (const f of publicFiles) hash.update(f).update(readFileSync(resolve(publicDir, f)));
+      const version = hash.digest('hex').slice(0, 12);
+
+      this.emitFile({
+        type: 'asset',
+        fileName: 'sw.js',
+        source: template.replace("'__VERSION__'", JSON.stringify(version)).replace('__PRECACHE__', JSON.stringify(precache, null, 2)),
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  // Relative base so the build works from any path, e.g. https://<user>.github.io/snowtest/
+  // Relative base so the build works from any path, e.g. https://<user>.github.io/<repo>/
   base: './',
-  plugins: [react(), examsPlugin()],
+  plugins: [react(), examsPlugin(), serviceWorkerPlugin()],
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts'],

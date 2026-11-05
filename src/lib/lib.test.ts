@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { ExamStore } from '../domain/types';
-import { DEFAULT_CONFIG_URL, loadConfiguredExams, remoteExamId, resolveExamSource } from './examSource';
+import { loadConfiguredExams, remoteExamId, resolveExamSource } from './examSource';
 import { formatClock } from './format';
 import { linkParts, splitExplanation } from './text';
 
@@ -35,12 +35,13 @@ describe('exam source', () => {
     expect(remoteExamId(url)).toBe('remote_' + Math.abs(h).toString(36));
   });
 
-  it('uses GitHub in production and bundled files in dev or with ?source=local', () => {
-    expect(resolveExamSource({ dev: false, search: '' }).configUrl).toBe(DEFAULT_CONFIG_URL);
-    const local = resolveExamSource({ dev: false, search: '?source=local' });
-    expect(local.resolve('https://raw.githubusercontent.com/x/y/main/Exams/A.json')).toBe('Exams/A.json');
-    expect(resolveExamSource({ dev: true, search: '' }).label).toBe('bundled files');
-    expect(resolveExamSource({ envConfigUrl: 'https://cfg', dev: true, search: '' }).configUrl).toBe('https://cfg');
+  it('loads the exams deployed with the site, unless a config URL is set at build time', () => {
+    const site = resolveExamSource();
+    expect(site.configUrl).toBe('Exams/exams.config.json');
+    expect(site.resolve('https://raw.githubusercontent.com/x/y/main/Exams/A.json')).toBe('Exams/A.json');
+    const custom = resolveExamSource({ envConfigUrl: 'https://cfg' });
+    expect(custom.configUrl).toBe('https://cfg');
+    expect(custom.resolve('https://x/A.json')).toBe('https://x/A.json');
   });
 
   it('re-fetches exams, keeps progress, and falls back to the cache on failure', async () => {
