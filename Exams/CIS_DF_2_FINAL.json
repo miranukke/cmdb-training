@@ -2,8 +2,9 @@
   "exam_metadata": {
     "title": "CIS - Data Foundations (CMDB & CSDM) - 2",
     "source": "CIS_-_DF_2_-_FINAL.pdf",
-    "total_questions": 71,
-    "note": "Questions are numbered as shown in the exam. Some numbers are missing in the source (e.g. 46) and are preserved as-is."
+    "total_questions": 70,
+    "note": "Questions are numbered as shown in the exam. Some numbers are missing in the source (e.g. 46) and are preserved as-is.",
+    "verification": "Answer key verified against official ServiceNow product documentation (Australia, Zurich and Yokohama releases) on 2026-11-05."
   },
   "questions": [
     {
@@ -15,7 +16,8 @@
         { "id": "B", "text": "Business Capability, Information Object, Business Application" },
         { "id": "C", "text": "Application Service, Technology Management Service (Technical Service), Technology Management Offering (Technical Service Offering)" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "The Service Consumption (Sell/Consume) domain holds Business Services, Business Service Offerings and the request catalog. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/sell-consume-domain.html"
     },
     {
       "id": 2,
@@ -29,12 +31,13 @@
       ],
       "targets": [
         { "id": "target1", "label": "Recommended for mission-critical applications that require a precise approach using patterns" },
-        { "id": "target2", "label": "Best fit to map cloud-native, container-based, or machine environments" }
+        { "id": "target2", "label": "Best fit to map cloud-native, container-based, or virtual machine environments" }
       ],
       "correct_mapping": {
         "target1": "item3",
-        "target2": "item2"
-      }
+        "target2": "item4"
+      },
+      "explanation": "Top-down (pattern-based) mapping gives a high-fidelity map for mission-critical services; tag-based mapping fits cloud, container and VM environments using cloud tags; ML connection suggestions use fingerprinting for custom-built apps; Dynamic CI groups fit small services defined by a CMDB query. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/application-services.html"
     },
     {
       "id": 3,
@@ -45,7 +48,8 @@
         { "id": "B", "text": "Correctness" },
         { "id": "C", "text": "Compliance" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Duplicate, Orphan and Stale CIs are the Correctness metrics. Completeness covers required and recommended fields, and Compliance covers audits against certification templates. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html"
     },
     {
       "id": 4,
@@ -56,7 +60,8 @@
         { "id": "B", "text": "CMDB Workspace" },
         { "id": "C", "text": "Discovery Admin Workspace" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "After SGC Central is installed, its view appears in CMDB Workspace (and Service Graph Workspace). There is no 'Service Graph Connector Workspace'. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/sgcc-landing.html"
     },
     {
       "id": 5,
@@ -68,7 +73,8 @@
         { "id": "C", "text": "Retire" },
         { "id": "D", "text": "Archive" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["D"],
+      "explanation": "Archive moves CIs into archive tables for a configurable retention period, during which they can be restored. Delete is irreversible. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html"
     },
     {
       "id": 6,
@@ -79,7 +85,8 @@
         { "id": "B", "text": "The de-duplication task module" },
         { "id": "C", "text": "The de-duplication dashboard on the CMDB workspace" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The De-duplication dashboard in CMDB Workspace is the central place for remediating de-duplication tasks, including running templates in bulk. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/dedup-ci-exp-cmdb-workspace.html"
     },
     {
       "id": 7,
@@ -91,7 +98,8 @@
         { "id": "C", "text": "Design and Planning (Design)" },
         { "id": "D", "text": "Service Delivery" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Presenting offerings to business consumers (Service Portfolio Management) is the Service Consumption (Sell/Consume) domain. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/sell-consume-domain.html"
     },
     {
       "id": 8,
@@ -103,7 +111,8 @@
         { "id": "C", "text": "Contextual side panel" },
         { "id": "D", "text": "Content controls" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The Related items panel (part of the contextual side panel) shows changes, active incidents and active problems for the selected CI. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/unified-map/cmdb-workspace-unified-map.html"
     },
     {
       "id": 9,
@@ -117,7 +126,8 @@
         { "id": "D", "text": "Disposed" },
         { "id": "E", "text": "Archive" }
       ],
-      "correct_answers": ["A", "E"]
+      "correct_answers": ["A", "E"],
+      "explanation": "The life-cycle (end-of-life) policies are Retire, Archive and Delete; they require an active retirement definition for each targeted class. Lost, Decommission and Disposed are status values, not policy types. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/data-manager-create-policy-wrkspc.html"
     },
     {
       "id": 10,
@@ -130,7 +140,8 @@
         { "id": "C", "text": "Provides playbooks to assist in the remediation of potential risks" },
         { "id": "D", "text": "Uses automation to remediate potential risks" }
       ],
-      "correct_answers": ["B", "C"]
+      "correct_answers": ["B", "C"],
+      "explanation": "The CMDB Data Foundations dashboard checks that important data is valid and properly configured, and each metric links to a remediation playbook. It does not auto-remediate and has no custom-metric framework. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html"
     },
     {
       "id": 11,
@@ -142,7 +153,8 @@
         { "id": "C", "text": "Inventory - Available" },
         { "id": "D", "text": "In any lifecycle state" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Archive and Delete policies only process CIs that are already retired according to their class retirement definition - by CSDM default, Life Cycle Stage = End of Life and Life Cycle Stage Status = Retired. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/life-cycle-rules.html"
     },
     {
       "id": 12,
@@ -156,7 +168,8 @@
         { "id": "D", "text": "Orphan CIs created from different data sources" },
         { "id": "E", "text": "Duplicate configuration items from different data sources" }
       ],
-      "correct_answers": ["B", "C"]
+      "correct_answers": ["B", "C"],
+      "explanation": "CMDB 360 queries find gaps (CIs or attributes reported by one source but not another) and compare attribute values that differ across discovery sources. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb360-exp-cmdb-workspace.html"
     },
     {
       "id": 13,
@@ -167,7 +180,8 @@
         { "id": "B", "text": "CMDB feature adoption tile under the Insights tab" },
         { "id": "C", "text": "Important actions tile under the Home tab" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "De-duplication tasks generated by the IRE appear as cards in the Important actions tile on the CMDB Workspace Home view, which link to the De-duplication dashboard and template libraries. My Work holds CMDB Data Manager tasks. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-workspace-home-view.html"
     },
     {
       "id": 14,
@@ -178,7 +192,8 @@
         { "id": "B", "text": "Create a new CI class specifically for non-discoverable attributes" },
         { "id": "C", "text": "Use the CMDB Reconciliation Engine to update the attributes" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Data that discovery can't see should come from its authoritative source through a scheduled import. Reconciliation only decides which source may update an attribute. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/c_OptionsToPopulateCMDB.html"
     },
     {
       "id": 15,
@@ -191,7 +206,8 @@
         { "id": "D", "text": "Service Consumption (Sell / Consume)" },
         { "id": "E", "text": "Service Delivery (Manage Technical Services)" }
       ],
-      "correct_answers": ["E"]
+      "correct_answers": ["E"],
+      "explanation": "Service Delivery (Manage Technical Services) covers Technology Management Offerings, service instances (application services), Dynamic CI groups and Application Runs on::Runs infrastructure CIs. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/manage-tech-servs-domain.html"
     },
     {
       "id": 16,
@@ -216,7 +232,8 @@
         "target2": "item2",
         "target3": "item4",
         "target4": "item5"
-      }
+      },
+      "explanation": "De-duplication tasks can be assigned to groups; the CMDB Health Dashboard's Duplicate metric gives insight into duplicates; templates resolve tasks in bulk; the Duplicate CI Remediator wizard resolves a single task. Certification tasks don't apply. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/de-duplication-tasks.html"
     },
     {
       "id": 17,
@@ -229,7 +246,8 @@
         { "id": "C", "text": "Remove non-operational and retired CIs" },
         { "id": "D", "text": "Adjust the metrics using exclusion rules to improve the scores" }
       ],
-      "correct_answers": ["A", "B"]
+      "correct_answers": ["A", "B"],
+      "explanation": "Metrics are listed in priority order (1 - Critical first) and each has a remediation playbook link, so focus on critical/high metrics and follow their playbooks. There are no exclusion rules for tuning the scores. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html"
     },
     {
       "id": 18,
@@ -241,7 +259,8 @@
         { "id": "C", "text": "SCCM Service Graph Connector" },
         { "id": "D", "text": "IntegrationHub ETL connection to SCCM using Robust Transform Engine (RTE)" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "Service Graph Connectors are certified, pre-built integrations (here for Microsoft SCCM) that minimize customization and accelerate time to value, and they process data through the IRE. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-sgc-intro.html"
     },
     {
       "id": 19,
@@ -254,7 +273,8 @@
         { "id": "C", "text": "sn_csdm_admin" },
         { "id": "D", "text": "sn_cmdb_admin" }
       ],
-      "correct_answers": ["B", "D"]
+      "correct_answers": ["B", "D"],
+      "explanation": "Updating the Principal Class filter requires sn_cmdb_admin (or itil_admin) plus personalize_dictionary, because it edits class (dictionary) metadata. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/update-principal-class-filter.html"
     },
     {
       "id": 20,
@@ -267,7 +287,8 @@
         { "id": "D", "text": "Certification" },
         { "id": "E", "text": "Archive" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["D"],
+      "explanation": "Location is a CI attribute. Certification policies validate that specific attributes have the expected values; Attestation only confirms the CI exists. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html"
     },
     {
       "id": 21,
@@ -287,7 +308,8 @@
         { "id": "B", "text": "75" },
         { "id": "C", "text": "50" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "A child-class reconciliation rule overrides the parent's rule, so the Windows Server rule (most reported) applies: 75 is reported by two sources. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_ReconciliationRulesPrinciples.html"
     },
     {
       "id": 22,
@@ -300,7 +322,8 @@
         { "id": "C", "text": "Ensure that scheduled jobs are run during off-business hours to ensure that sync happens" },
         { "id": "D", "text": "Ensure that the business rule to update CI fields on change on the asset table is active" }
       ],
-      "correct_answers": ["B", "D"]
+      "correct_answers": ["B", "D"],
+      "explanation": "Asset and CI records stay synchronized through two base-system business rules: 'Update CI fields on change' on alm_asset and 'Update Asset fields on change' on cmdb_ci. Source: https://www.servicenow.com/docs/r/australia/it-asset-management/asset-management/c_ManagingAssets.html"
     },
     {
       "id": 23,
@@ -311,7 +334,8 @@
         { "id": "B", "text": "Configure a business rule on the computer table to use a script to populate the 'Assigned to' field on the asset based on insert or update in the computer class 'Assigned to' field" },
         { "id": "C", "text": "Hide the 'Assigned to' field on the asset record and create a new field that dot walks to the related CI to get the 'Assigned to' value" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Asset-CI Field Mapping (Asset > Administration > Asset-CI Field Mapping) is the supported, no-code way to keep a field synchronized both ways between an asset and its CI. Source: https://www.servicenow.com/docs/r/australia/it-asset-management/asset-management/t_CreateAssetandCIFieldsMapping.html"
     },
     {
       "id": 24,
@@ -323,7 +347,8 @@
         { "id": "C", "text": "Service classification in the Technical Service" },
         { "id": "D", "text": "Business Criticality in the Service Offering" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["D"],
+      "explanation": "Business criticality is set per service offering, so incidents on customer-facing offerings can be prioritized. Source: https://www.servicenow.com/docs/r/australia/it-service-management/change-management/itsm-change-use-case-example.html"
     },
     {
       "id": 25,
@@ -334,7 +359,8 @@
         { "id": "B", "text": "Business Service" },
         { "id": "C", "text": "Service Offering" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "A Dynamic CI group can be used as a group CI in the Configuration Item field of a change, so one change covers all its member CIs. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-dynamic-ci-groups-by-service.html"
     },
     {
       "id": 26,
@@ -345,7 +371,8 @@
         { "id": "B", "text": "It describes the logical data to the Business Applications." },
         { "id": "C", "text": "It describes data exchanged between an API interface and an Application." }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Regulated data (PII, PCI DSS, HIPAA...) is modeled as Information Objects related to the Business Application (Business application Uses::Used by Information object) in the Design & Planning domain. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/design-domain.html"
     },
     {
       "id": 27,
@@ -357,7 +384,8 @@
         { "id": "C", "text": "CMDB Workspace" },
         { "id": "D", "text": "CMDB Health Dashboard" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "CMDB Workspace's search and explore view supports Natural Language Query (NLQ) through Intelligent Search for CMDB. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/sg-workspace-search-explore-view.html"
     },
     {
       "id": 28,
@@ -376,7 +404,8 @@
         { "id": "A", "text": "CI1 will be updated with matching record and CI2 will be inserted as new record." },
         { "id": "B", "text": "CI1 and CI2 both will be inserted as new records." }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "CI1 matches an existing CI on Name, which is an identifier entry, so it is updated. IP address is not a criterion attribute in the rule, so CI2 matches nothing and is inserted as a new CI. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/class-hardware.html"
     },
     {
       "id": 29,
@@ -387,7 +416,8 @@
         { "id": "B", "text": "Check the Principal Class check box" },
         { "id": "C", "text": "Select 'Yes' from the Principal Class choice list" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Select the Principal Class check box in CI Class Manager > Class Info > Basic Info. CI reference fields on the task types in the principal-class filter property (incident, problem, change and their tasks) then show only CIs from principal classes. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/update-principal-class-filter.html"
     },
     {
       "id": 30,
@@ -399,7 +429,8 @@
         { "id": "C", "text": "CSDM Data Foundation Dashboard" },
         { "id": "D", "text": "Service Mapping Data Foundation Dashboard" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The CSDM Data Foundations dashboard shows key CSDM indicators per implementation stage (Foundation, Crawl, Walk, Run, Fly) and links to playbooks for remediation. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/csdm-data-foundations-dashboard.html"
     },
     {
       "id": 31,
@@ -412,7 +443,8 @@
         { "id": "C", "text": "Application Service" },
         { "id": "D", "text": "Service Portfolio" }
       ],
-      "correct_answers": ["B", "C"]
+      "correct_answers": ["B", "C"],
+      "explanation": "The incident form uses Service, Service Offering and Configuration Item (which can be an application service). Business Applications aren't used by Incident, Problem or Change. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-implement-crawl-stage.html"
     },
     {
       "id": 32,
@@ -425,7 +457,8 @@
         { "id": "D", "text": "Version" },
         { "id": "E", "text": "Port" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Two installs of the same application on one server share Class, Version and often the configuration file name; only the full configuration file path (install location) tells them apart."
     },
     {
       "id": 33,
@@ -437,7 +470,8 @@
         { "id": "C", "text": "Saved queries window on the CMDB 360 tab" },
         { "id": "D", "text": "Saved queries window on the Insights tab" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The Saved queries card on the CMDB 360 tab of CMDB Workspace lists your CMDB 360 queries; from there you can run and edit them or create new ones. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb360-exp-cmdb-workspace.html"
     },
     {
       "id": 34,
@@ -448,7 +482,8 @@
         { "id": "B", "text": "Pinned Classes" },
         { "id": "C", "text": "CI Favorites" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Pinned Classes in CI Class Manager give quick navigation back to the classes you use most. Source: ServiceNow University course 'CMDB Fundamentals' (Australia)"
     },
     {
       "id": 35,
@@ -460,7 +495,8 @@
         { "id": "C", "text": "Life Cycle Stage Status [life_cycle_stage_status]" },
         { "id": "D", "text": "Life Cycle Mapping [life_cycle_mapping]" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["D"],
+      "explanation": "Only the Life Cycle Mapping [life_cycle_mapping] rules (legacy status -> CSDM stage/status pair) are meant to be updated. Life Cycle Stage, Stage Status and Control hold the ServiceNow-owned standard values and valid combinations. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-life-cycle-standard-values.html"
     },
     {
       "id": 36,
@@ -472,7 +508,8 @@
         { "id": "C", "text": "Set the system property to utilize the IRE within transform maps" },
         { "id": "D", "text": "Set the coalesce on two mappings within the transform map" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["B"],
+      "explanation": "Coalescing only matches within the transform map and bypasses the IRE. ServiceNow's documented method is to call the CMDBTransformUtil API from an onBefore transform script so each row is identified by the IRE before insert. There is no system property that turns the IRE on for transform maps. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/identification-import-sets.html"
     },
     {
       "id": 37,
@@ -496,7 +533,8 @@
         "target1": "item3",
         "target2": "item1",
         "target3": "item6"
-      }
+      },
+      "explanation": "Completeness: Required (and Recommended) fields; Compliance: Audit; Correctness: Orphan (and Duplicate, Stale). Stability, Certify and Suggested are not health sub-metrics. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html"
     },
     {
       "id": 38,
@@ -518,10 +556,11 @@
       ],
       "correct_mapping": {
         "target1": "item3",
-        "target2": "item2",
+        "target2": "item4",
         "target3": "item1",
         "target4": "item5"
-      }
+      },
+      "explanation": "multisource_enabled enables CMDB 360; multisource_cmdb_ci_enabled captures CMDB 360 data for CMDB classes (non-CMDB classes have their own property, so that item is the distractor); glide.cmdb.logger.source.cmdb_multisource enables logging; recompute.max.ci.limit caps a recompute. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/components-multisource-cmdb.html"
     },
     {
       "id": 39,
@@ -533,7 +572,8 @@
         { "id": "C", "text": "CI Class Manager" },
         { "id": "D", "text": "Technology Management Service Offering (Technical Service Offering)" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["D"],
+      "explanation": "Set Support group, Change group or Managed by group on a Technology Management Offering linked to a Dynamic CI Group and the values are applied to all its CIs. Approval, CMDB and Owned by groups are not synced. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-enable-tso.html"
     },
     {
       "id": 40,
@@ -545,7 +585,8 @@
         { "id": "C", "text": "CMDB Workspace > Management tab" },
         { "id": "D", "text": "CMDB Health Dashboard > Audit tab" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "Data Manager tasks (attestation, certification, life-cycle approvals) are reviewed in CMDB Workspace > My Work (renamed the 'Tasks' view in newer releases). The Management view is where policies are created and tracked. Source: https://www.servicenow.com/docs/r/yokohama/servicenow-platform/configuration-management-database-cmdb/data-manager-review-task-wrkspc.html"
     },
     {
       "id": 41,
@@ -558,7 +599,8 @@
         { "id": "C", "text": "Implement and use identification and reconciliation rules to avoid duplicates and standardize CI classification" },
         { "id": "D", "text": "Create a custom script to manually adjust incoming data before storing it in the CMDB" }
       ],
-      "correct_answers": ["A", "C"]
+      "correct_answers": ["A", "C"],
+      "explanation": "Standardize classes and attributes in CI Class Manager, and let IRE identification and reconciliation rules prevent duplicates and decide which source may update which attribute. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/c_CMDBIdentifyandReconcile.html"
     },
     {
       "id": 42,
@@ -569,7 +611,8 @@
         { "id": "B", "text": "Unified Map" },
         { "id": "C", "text": "Business Service Map" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["B"],
+      "explanation": "Unified Map is the CMDB Workspace tool that graphically shows CIs, the relationships between them and application services. 'Relationship Map' isn't a CMDB Workspace feature. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-workspace-home-view.html"
     },
     {
       "id": 43,
@@ -580,7 +623,8 @@
         { "id": "B", "text": "CI Class Manager" },
         { "id": "C", "text": "Service Graph Connectors" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "'Hardware CIs with Serial Numbers' is a CMDB Data Foundations dashboard metric with its own remediation playbook, which gives a structured way to analyze and fix the gap. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html"
     },
     {
       "id": 44,
@@ -593,7 +637,8 @@
         { "id": "C", "text": "DevOps" },
         { "id": "D", "text": "Observability" }
       ],
-      "correct_answers": ["B", "D"]
+      "correct_answers": ["B", "D"],
+      "explanation": "SGC categories include public cloud providers, endpoint/IT asset management, monitoring and observability, security, software/server/network and operational technology. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/service-graph-connectors/cmdb-sgc-available.html"
     },
     {
       "id": 45,
@@ -605,7 +650,8 @@
         { "id": "C", "text": "Allow fallback to parent's rules" },
         { "id": "D", "text": "Criterion attributes" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "'Allow fallback to parent's rules' lets the IRE use the parent class's identification rule (here Application) when no match is found with the dependent child rule (Tomcat). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_CreateCIIdentificationRule.html"
     },
     {
       "id": 47,
@@ -628,7 +674,8 @@
         "target2": "item3",
         "target3": "item4",
         "target4": "item1"
-      }
+      },
+      "explanation": "Discovery scans and identifies infrastructure; Service Graph Connectors integrate external systems; Service Mapping builds the service topology; Agent Client Collector is an agent on endpoints giving real-time configuration visibility. Source: https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r-discovery.html"
     },
     {
       "id": 48,
@@ -640,7 +687,8 @@
         { "id": "C", "text": "CMDB CI Class Manager" },
         { "id": "D", "text": "CMDB Data Manager" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "Identification rules are configured per class in CI Class Manager (Class Info > Identification Rule) and are applied by the IRE. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_CreateCIIdentificationRule.html"
     },
     {
       "id": 49,
@@ -652,7 +700,8 @@
         { "id": "C", "text": "Populating the CMDB with as much data as possible to ensure a comprehensive inventory of CIs" },
         { "id": "D", "text": "Allowing IT teams to modify CMDB records as needed to promote flexibility in data management" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Data in the model has little value without governance and an effective process to keep it true and valid, continuously monitored through CMDB health. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-landing-page.html"
     },
     {
       "id": 50,
@@ -664,7 +713,8 @@
         { "id": "C", "text": "Change group" },
         { "id": "D", "text": "Support group" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["B"],
+      "explanation": "CI Class Manager sets the Managed By Group for a whole class, and Data Manager creates/approves tasks per Managed By Group value - so Managed By Group is the field that aligns policy tasks with class ownership. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-data-synchronize-enable.html"
     },
     {
       "id": 51,
@@ -676,7 +726,8 @@
         { "id": "C", "text": "CI List" },
         { "id": "D", "text": "Attributes" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "The class icon is part of the class definition on CI Class Manager's Basic Info tab. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_ViewTableDefinitions.html"
     },
     {
       "id": 52,
@@ -689,7 +740,8 @@
         { "id": "C", "text": "Use a Service Mapping Query to find all incidents related to the database" },
         { "id": "D", "text": "Use a CMDB Query to include application services and their related infrastructure" }
       ],
-      "correct_answers": ["C", "D"]
+      "correct_answers": ["A", "D"],
+      "explanation": "Build one CMDB query: include the application services and their related infrastructure, and add Incident from the Non-CMDB Tables list. Service Mapping queries only match CI-class patterns and can't include non-CMDB tables. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/querying-cmdb.html"
     },
     {
       "id": 53,
@@ -700,7 +752,8 @@
         { "id": "B", "text": "The customization will prevent the SGC from executing without an approval record attached to the affected mapping record." },
         { "id": "C", "text": "Fields populated by a customization will have a special tag associated with them in the CMDB." }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Once you customize an SGC's mappings you own them: upgrades skip your customized files and the customer must maintain/support them. There are no special field tags or approval records for customizations. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/service-graph-connectors/upgrade-sccm-newer-version.html"
     },
     {
       "id": 54,
@@ -714,7 +767,8 @@
         { "id": "D", "text": "Event Management" },
         { "id": "E", "text": "Discovery" }
       ],
-      "correct_answers": ["B", "E"]
+      "correct_answers": ["B", "E"],
+      "explanation": "Discovery creates relationships from the TCP connections it finds, and Service Mapping builds the full map of CIs in an application service; both create relationships automatically. Source: https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r_ApplicationDependencyMapping.html"
     },
     {
       "id": 55,
@@ -725,7 +779,8 @@
         { "id": "B", "text": "Customize the CMDB Health Dashboard scheduled jobs to group the results by region" },
         { "id": "C", "text": "On the CMDB health settings, activate the option, Group scores by region" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Create CMDB groups of type Health (e.g. one per region). CMDB Health then monitors and scores just the CIs in that group, for example only CIs in a specific location. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-groups.html"
     },
     {
       "id": 56,
@@ -737,7 +792,8 @@
         { "id": "C", "text": "Reconciliation Rules" },
         { "id": "D", "text": "Identification Rules" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "Health inclusion rules filter which CIs are included in health calculations and shown on the CMDB Health Dashboard, e.g. to leave out classes not yet ready for management. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-health-inclusion-rule.html"
     },
     {
       "id": 57,
@@ -760,9 +816,10 @@
       "correct_mapping": {
         "target1": "item2",
         "target2": "item1",
-        "target3": "item4",
+        "target3": "item5",
         "target4": "item3"
-      }
+      },
+      "explanation": "Agent Client Collector = agent-based, running patterns; Discovery = agentless, running patterns; Import Sets = organization-built using transform maps; Service Graph Connectors = pre-built Store integrations that minimize customization. 'Third-party integrations from other vendors' is the distractor. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-sgc-intro.html"
     },
     {
       "id": 58,
@@ -774,7 +831,8 @@
         { "id": "C", "text": "Delete, Attestation, Retire, and Certification" },
         { "id": "D", "text": "Attestation, Retire, and Certification" }
       ],
-      "correct_answers": ["A"]
+      "correct_answers": ["A"],
+      "explanation": "CMDB Data Manager policy types are Retire, Archive, Delete, Attestation, Certification and Delete CMDB Related Entry. De-duplication is handled by de-duplication tasks/templates and reconciliation by the IRE - neither is a Data Manager policy type. Option A is the only choice listing all five main types. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html"
     },
     {
       "id": 59,
@@ -786,7 +844,8 @@
         { "id": "C", "text": "CMDB Data Manager" },
         { "id": "D", "text": "CMDB 360/Multisource CMDB" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["D"],
+      "explanation": "Dynamic reconciliation rules (largest value, most reported, etc.) can only be created when CMDB 360/Multisource CMDB is enabled. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-reconciliation-rule.html"
     },
     {
       "id": 60,
@@ -799,7 +858,8 @@
         { "id": "C", "text": "Enables the CFO/CIO to track software licenses" },
         { "id": "D", "text": "Provides a centralized view of configuration items and their relationships" }
       ],
-      "correct_answers": ["B", "D"]
+      "correct_answers": ["B", "D"],
+      "explanation": "A centralized view of CIs and their relationships supports better decision-making and operational efficiency. License tracking belongs to Software Asset Management. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cnfig-mgmt-and-cmdb.html"
     },
     {
       "id": 61,
@@ -811,7 +871,8 @@
         { "id": "C", "text": "Service Graph Connector" },
         { "id": "D", "text": "Import Sets and Transform Maps" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "Service Graph Connectors are certified, supported Store integrations kept up to date with partners, so they minimize custom code and technical debt. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-sgc-intro.html"
     },
     {
       "id": 62,
@@ -823,7 +884,8 @@
         { "id": "C", "text": "Application > Used by::Uses > Server" },
         { "id": "D", "text": "Application > Runs::Runs On > Server" }
       ],
-      "correct_answers": ["D"]
+      "correct_answers": ["A"],
+      "explanation": "Relationship names are read from the parent's side: the Application (parent) 'Runs on' the Server (child) and the Server 'Runs' the Application, i.e. Application > Runs on::Runs > Server. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/manage-tech-servs-domain.html"
     },
     {
       "id": 63,
@@ -835,7 +897,8 @@
         { "id": "C", "text": "Data Quality Scheduled Job" },
         { "id": "D", "text": "CMDB Audit Business Rule" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["B"],
+      "explanation": "CMDB Workspace is the central place to examine CMDB health and access the CMDB dashboards and governance tools. 'Data Quality Scheduled Job' and 'Data Quality Business Rule' aren't ServiceNow features. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-workspace.html"
     },
     {
       "id": 64,
@@ -848,7 +911,8 @@
         { "id": "D", "text": "Walk" },
         { "id": "E", "text": "Foundation" }
       ],
-      "correct_answers": ["B"]
+      "correct_answers": ["D"],
+      "explanation": "Walk adds Technology Management Services, Technology Management Offerings and Dynamic CI groups, so support and technical approval groups can be synchronized onto CIs from the offering. Run adds business services and offerings. Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-implement-walk-stage.html"
     },
     {
       "id": 65,
@@ -859,7 +923,8 @@
         { "id": "B", "text": "Life cycle choice list" },
         { "id": "C", "text": "Life cycle mappings" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The Life Cycle Mapping module specifies how legacy status values convert to CSDM life cycle stage / stage status pairs. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-life-cycle-mapping-form.html"
     },
     {
       "id": 66,
@@ -872,7 +937,8 @@
         { "id": "C", "text": "Least Related Items" },
         { "id": "D", "text": "Most Related Items" }
       ],
-      "correct_answers": ["A", "D"]
+      "correct_answers": ["A", "D"],
+      "explanation": "The Duplicate CI Remediator recommends a main CI using criteria such as most related items, most relationships, newest discovered, newest updated and oldest created. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/reconcile-dup-task.html"
     },
     {
       "id": 67,
@@ -884,7 +950,8 @@
         { "id": "C", "text": "It is a free application on the ServiceNow Store." },
         { "id": "D", "text": "It is active by default." }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The CMDB and CSDM Data Foundations Dashboards don't require a paid license and are delivered/updated through the ServiceNow Store. Source: ServiceNow University course 'CMDB Fundamentals' (Australia); https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/csdm-cmdb-foundations-dashboards.html"
     },
     {
       "id": 68,
@@ -903,11 +970,12 @@
         { "id": "target4", "label": "Enterprise Architect(s), Data Steward(s), Process Owner(s), Platform Owner" }
       ],
       "correct_mapping": {
-        "target1": "item2",
-        "target2": "item3",
+        "target1": "item3",
+        "target2": "item4",
         "target3": "item1",
-        "target4": "item4"
-      }
+        "target4": "item2"
+      },
+      "explanation": "CSDM 5 personas by domain: Foundation - Process Owner, Data Steward, Product Owner, Contract Manager; Design & Planning - Enterprise Architect, Application Owner; Service Delivery (technical) - service instance / service delivery owners; Manage Portfolio - Service Owners. Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/foundation-domain.html"
     },
     {
       "id": 69,
@@ -930,7 +998,8 @@
         "target2": "item4",
         "target3": "item3",
         "target4": "item1"
-      }
+      },
+      "explanation": "Design & Planning: business applications, capabilities and investment decisions; Service Delivery: technical services/offerings and the underlying CIs; Service Consumption: business services and what's offered/requested; Foundation: base-system tables. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/foundation-domain.html"
     },
     {
       "id": 70,
@@ -942,7 +1011,8 @@
         { "id": "C", "text": "Review both locations, update CIs with the correct location and delete the duplicate location" },
         { "id": "D", "text": "Use the Duplicate CI Remediator to merge the duplicate location records" }
       ],
-      "correct_answers": ["C"]
+      "correct_answers": ["C"],
+      "explanation": "The Unique Locations metric counts location records whose name is used more than once. The playbook approach is to review both records, repoint CIs to the correct location and then delete the duplicate. Locations aren't CIs, so the Duplicate CI Remediator doesn't apply. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html"
     },
     {
       "id": 71,
@@ -955,7 +1025,8 @@
         { "id": "C", "text": "Enterprise Architect" },
         { "id": "D", "text": "Business Relationship Manager" }
       ],
-      "correct_answers": ["B", "C"]
+      "correct_answers": ["B", "C"],
+      "explanation": "The CSDM 5 white paper names Enterprise Architect and Application Owner as the personas of the Design & Planning domain (business capabilities, business applications, information objects). Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/design-domain.html"
     }
   ]
 }

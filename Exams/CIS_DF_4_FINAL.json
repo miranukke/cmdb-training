@@ -26,14 +26,14 @@
         "B",
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384133-exam-cis-df-topic-1-question-1-discussion/",
+      "explanation": "Set Support group, Change group or Managed by group on a Technology Management Offering linked to a Dynamic CI Group and the values are applied to all its CIs. Approval, CMDB and Owned by groups are not synced. (Change group is also synced.) Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-enable-tso.html",
       "tags": [],
       "select_count": 2
     },
     {
       "id": 2,
       "type": "single_choice",
-      "question": "The CMDB Administrator has set-up two Dynamic Reconcilliation Rules within the ServiceNow Production Instance. The \u2018Server\u2019 class has a Dynamic Reconciliation Rule of largest value for the RAM field. The \u2018Windows Server\u2019 class has a Dynamic Reconciliation Rule of most reported for the RAM field.Given the above data in the Multisource CMDB, which value would be added to the CMDB for RAM for a \u2018Server\u2019 CI?",
+      "question": "The CMDB Administrator has set up two Dynamic Reconciliation Rules within the ServiceNow Production Instance. The 'Server' class has a Dynamic Reconciliation Rule of largest value for the RAM field. The 'Windows Server' class has a Dynamic Reconciliation Rule of most reported for the RAM field. The following RAM values are reported in CMDB 360/Multisource CMDB: Altiris = 4.096 MB, SCCM = 4.096 MB, ServiceNow = 8.192 MB, Tivoli = 2.048 MB. Which value would be added to the CMDB for RAM for a 'Server' CI?",
       "choices": [
         {
           "id": "A",
@@ -48,8 +48,10 @@
           "text": "2.048 MB"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384707-exam-cis-df-topic-2-question-1-discussion/",
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "A plain Server CI uses the Server class rule (largest value), so it gets 8.192 MB. The Windows Server rule (most reported, which would give 4.096 MB) only applies to Windows Server CIs - child-class rules override the parent only for that child class. (Data table reconstructed: the original image was missing.) Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_ReconciliationRulesPrinciples.html",
       "tags": []
     },
     {
@@ -71,21 +73,54 @@
         }
       ],
       "correct_answers": [
-        "D"
+        "A"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384479-exam-cis-df-topic-3-question-1-discussion/",
+      "explanation": "Duplicate, Orphan and Stale CIs are the Correctness metrics. Completeness covers required and recommended fields, and Compliance covers audits against certification templates. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html",
       "tags": []
     },
     {
       "id": 4,
-      "type": "single_choice",
-      "question": "DRAG DROP -A manufacturing organization has implemented Incident Management in ServiceNow and wants to integrate additional products to enhance its functionality.Drag each ServiceNow product to the value it brings to supporting Incident Management.",
-      "choices": [],
-      "correct_answers": [
-        "D"
+      "type": "drag_and_drop",
+      "question": "A manufacturing organization has implemented Incident Management in ServiceNow and wants to integrate additional products to enhance its functionality. Drag each ServiceNow product to the value it brings to supporting Incident Management. Some options may not apply.",
+      "explanation": "Reconstructed (original drag-and-drop content was missing). Discovery keeps CI data current, Service Mapping provides service impact, Event Management binds alerts to CIs and creates incidents. Cloud Provisioning and Governance doesn't directly support Incident Management. Source: https://www.servicenow.com/docs/r/australia/it-operations-management/event-management/ci-binding-alert.html",
+      "tags": [],
+      "items": [
+        {
+          "id": "item1",
+          "text": "ServiceNow Discovery"
+        },
+        {
+          "id": "item2",
+          "text": "Service Mapping"
+        },
+        {
+          "id": "item3",
+          "text": "Event Management"
+        },
+        {
+          "id": "item4",
+          "text": "Cloud Provisioning and Governance"
+        }
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384946-exam-cis-df-topic-4-question-1-discussion/",
-      "tags": []
+      "targets": [
+        {
+          "id": "target1",
+          "label": "Keeps infrastructure CIs and their relationships accurate so incidents reference the correct CI"
+        },
+        {
+          "id": "target2",
+          "label": "Shows which application services depend on a failing CI so the business impact of an incident can be assessed"
+        },
+        {
+          "id": "target3",
+          "label": "Binds monitoring alerts to CIs, correlates them and can open incidents automatically"
+        }
+      ],
+      "correct_mapping": {
+        "target1": "item1",
+        "target2": "item2",
+        "target3": "item3"
+      }
     },
     {
       "id": 5,
@@ -116,19 +151,57 @@
       "correct_answers": [
         "D"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384735-exam-cis-df-topic-5-question-1-discussion/",
+      "explanation": "Understanding operational risk in a business-application context (which apps hold sensitive data) requires Information Objects related to Business Applications. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/design-domain.html",
       "tags": []
     },
     {
       "id": 6,
-      "type": "single_choice",
-      "question": "DRAG DROP -Drag and drop the application service type to the best description.",
-      "choices": [],
-      "correct_answers": [
-        "A"
+      "type": "drag_and_drop",
+      "question": "Drag and drop the application service type to the best description.",
+      "explanation": "Top-down (pattern-based) mapping gives a high-fidelity map for mission-critical services; tag-based mapping fits cloud, container and VM environments using cloud tags; ML connection suggestions use fingerprinting for custom-built apps; Dynamic CI groups fit small services defined by a CMDB query. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/application-services.html",
+      "tags": [],
+      "items": [
+        {
+          "id": "DynamicCIGroup",
+          "text": "Dynamic CI Group"
+        },
+        {
+          "id": "ServiceMappingConnectionSuggestion",
+          "text": "Service Mapping (Connection Suggestion)"
+        },
+        {
+          "id": "ServiceMappingTopDown",
+          "text": "Service Mapping (Top-down)"
+        },
+        {
+          "id": "TagBased",
+          "text": "Tag-Based"
+        }
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384359-exam-cis-df-topic-2-question-2-discussion/",
-      "tags": []
+      "targets": [
+        {
+          "id": "target1",
+          "label": "Recommended for mission-critical application services that require a precise approach using patterns"
+        },
+        {
+          "id": "target2",
+          "label": "Best fit to map cloud-native, container-based, or virtual machine environments"
+        },
+        {
+          "id": "target3",
+          "label": "Ideal for custom-built applications and leverages fingerprinting to generate service maps in a timely manner"
+        },
+        {
+          "id": "target4",
+          "label": "Ideal for small application services that can be easily defined using filters and CMDB queries"
+        }
+      ],
+      "correct_mapping": {
+        "target1": "ServiceMappingTopDown",
+        "target2": "TagBased",
+        "target3": "ServiceMappingConnectionSuggestion",
+        "target4": "DynamicCIGroup"
+      }
     },
     {
       "id": 7,
@@ -151,19 +224,75 @@
       "correct_answers": [
         "A"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384541-exam-cis-df-topic-2-question-2-discussion/",
+      "explanation": "IRE processing is built into IntegrationHub ETL, so all data is automatically identified and reconciled. The Table API and plain Import Sets/transform maps bypass the IRE unless you add extra scripting. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/integration-hub-etl/integrationhub-etl.html",
       "tags": []
     },
     {
       "id": 8,
-      "type": "single_choice",
-      "question": "DRAG DROP -Drag and drop the CMDB Health Dashboard metric to the description.",
-      "choices": [],
-      "correct_answers": [
-        "A"
+      "type": "drag_and_drop",
+      "question": "Drag and drop the CMDB Health Dashboard metric to the description.",
+      "explanation": "Each CMDB Health Dashboard metric has a specific meaning related to data quality.",
+      "tags": [],
+      "items": [
+        {
+          "id": "Audit",
+          "text": "Audit"
+        },
+        {
+          "id": "Duplicate",
+          "text": "Duplicate"
+        },
+        {
+          "id": "Orphan",
+          "text": "Orphan"
+        },
+        {
+          "id": "Recommended",
+          "text": "Recommended"
+        },
+        {
+          "id": "Required",
+          "text": "Required"
+        },
+        {
+          "id": "Stale",
+          "text": "Stale"
+        }
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384480-exam-cis-df-topic-3-question-2-discussion/",
-      "tags": []
+      "targets": [
+        {
+          "id": "target1",
+          "label": "CMDB records that represent the same physical or logical asset multiple times"
+        },
+        {
+          "id": "target2",
+          "label": "Fields necessary to create or update a CI record in the CMDB"
+        },
+        {
+          "id": "target3",
+          "label": "CMDB records that no longer maintain their logical or physical relationships with other CIs"
+        },
+        {
+          "id": "target4",
+          "label": "CMDB records that are no longer actively updated, but remain stored in the database"
+        },
+        {
+          "id": "target5",
+          "label": "Fields that support the accuracy, completeness, and usability of CI records in the CMDB"
+        },
+        {
+          "id": "target6",
+          "label": "Actual values of specified fields are compared to the expected values defined in a template"
+        }
+      ],
+      "correct_mapping": {
+        "target1": "Duplicate",
+        "target2": "Required",
+        "target3": "Orphan",
+        "target4": "Stale",
+        "target5": "Recommended",
+        "target6": "Audit"
+      }
     },
     {
       "id": 9,
@@ -190,7 +319,7 @@
       "correct_answers": [
         "D"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384729-exam-cis-df-topic-4-question-2-discussion/",
+      "explanation": "The Saved queries card on the CMDB 360 tab of CMDB Workspace lists your CMDB 360 queries; from there you can run and edit them or create new ones. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb360-exp-cmdb-workspace.html",
       "tags": []
     },
     {
@@ -222,7 +351,7 @@
       "correct_answers": [
         "B"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384736-exam-cis-df-topic-5-question-2-discussion/",
+      "explanation": "Deployed operational systems such as production-line monitoring are Service Delivery (Manage Technical Services) CIs. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/manage-tech-servs-domain.html",
       "tags": []
     },
     {
@@ -250,7 +379,7 @@
       "correct_answers": [
         "D"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384360-exam-cis-df-topic-1-question-3-discussion/",
+      "explanation": "Creating a class creates a table (a dictionary change), so you need sn_cmdb_admin (or itil_admin) plus personalize_dictionary. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_CreateCIType.html",
       "tags": []
     },
     {
@@ -278,7 +407,7 @@
       "correct_answers": [
         "A"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384708-exam-cis-df-topic-2-question-3-discussion/",
+      "explanation": "When several discovery sources are authorized for the same class attributes, reconciliation rules assign each source a priority (smaller number = higher priority) to decide which one is authoritative. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-reconciliation-rule.html",
       "tags": []
     },
     {
@@ -300,9 +429,9 @@
         }
       ],
       "correct_answers": [
-        "A"
+        "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384730-exam-cis-df-topic-4-question-3-discussion/",
+      "explanation": "Service maps show at a glance which application services a planned change affects, i.e. the business impact. CI location is just an attribute and doesn't need mapping. Source: https://www.servicenow.com/docs/r/australia/it-service-management/change-management/itsm-change-use-case-product-view.html",
       "tags": []
     },
     {
@@ -324,9 +453,9 @@
         }
       ],
       "correct_answers": [
-        "C"
+        "B"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384737-exam-cis-df-topic-5-question-3-discussion/",
+      "explanation": "Regulated data (PII, PCI DSS, HIPAA...) is modeled as Information Objects related to the Business Application (Business application Uses::Used by Information object) in the Design & Planning domain. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/design-domain.html",
       "tags": []
     },
     {
@@ -354,13 +483,13 @@
       "correct_answers": [
         "D"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384361-exam-cis-df-topic-1-question-4-discussion/",
+      "explanation": "Relationship names are read from the parent's side: the Application (parent) 'Runs on' the Server (child) and the Server 'Runs' the Application, i.e. Application > Runs on::Runs > Server. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/manage-tech-servs-domain.html",
       "tags": []
     },
     {
       "id": 16,
       "type": "multiple_choice",
-      "question": "Which CMDB 360/Multisource CMDB the Dynamic Reconciliation Rules will also be enabled. Based on the request of the management, a CMDB Administrator has to set up multiple Dynamic Reconciliation Rules.Which are available \u2018Dynamic Rule Types\u2019 within the \u2018Create Reconciliation Rule\u2019 wizard? (Choose two.)",
+      "question": "When CMDB 360/Multisource CMDB is enabled, Dynamic Reconciliation Rules become available. Based on a request from management, a CMDB Administrator has to set up multiple Dynamic Reconciliation Rules. Which are available 'Dynamic Rule Types' within the 'Create Reconciliation Rule' wizard? (Choose two.)",
       "choices": [
         {
           "id": "A",
@@ -383,7 +512,7 @@
         "B",
         "D"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384709-exam-cis-df-topic-2-question-4-discussion/",
+      "explanation": "Dynamic rule types include First Reported, Last Reported, Most Reported, Largest Value and Smallest Value. 'Last Updated' and 'Last Created' are not rule types. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-reconciliation-rule.html",
       "tags": [],
       "select_count": 2
     },
@@ -412,7 +541,7 @@
       "correct_answers": [
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384718-exam-cis-df-topic-3-question-4-discussion/",
+      "explanation": "Pick the discovered CI (newest discovered) as the main CI in the Duplicate CI Remediator. 'Use Main CI' keeps the main CI's attribute values and merges relationships and related items from the duplicate. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/reconcile-dup-task.html",
       "tags": []
     },
     {
@@ -440,7 +569,7 @@
       "correct_answers": [
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384731-exam-cis-df-topic-4-question-4-discussion/",
+      "explanation": "CMDB Workspace's search and explore view supports Natural Language Query (NLQ) through Intelligent Search for CMDB. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/sg-workspace-search-explore-view.html",
       "tags": []
     },
     {
@@ -464,7 +593,7 @@
       "correct_answers": [
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384920-exam-cis-df-topic-5-question-4-discussion/",
+      "explanation": "Walk-stage value includes 'additional stratification of the technical teams' support structure along the lines of OLAs and commitments'. Business-service impact assessment is a Run benefit and faster EA/APM adoption is a Crawl benefit. Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-implement-walk-stage.html",
       "tags": []
     },
     {
@@ -485,14 +614,16 @@
           "text": "Configure a business rule on the computer table to use a script to populate the \u2018Assigned to\u2019 filed on the asset based on insert or update in the computer class \u2018Assigned to\u2019 field"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384362-exam-cis-df-topic-1-question-5-discussion/",
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Asset-CI Field Mapping (Asset > Administration > Asset-CI Field Mapping) is the supported, no-code way to keep a field synchronized both ways between an asset and its CI. Source: https://www.servicenow.com/docs/r/australia/it-asset-management/asset-management/t_CreateAssetandCIFieldsMapping.html",
       "tags": []
     },
     {
       "id": 21,
       "type": "single_choice",
-      "question": "The following identification rule for a CI class has been defined:Two new CI records are imported into the hardware class of the CMDB:CI1: The name of this CI record matches the name of an existing CI record in the CMDB.CI2: The IP address of this CI record matches the IP address of an existing CI record in the CMDB.Which is correct based on the identification rule and the imported CI records?",
+      "question": "The following identification rule for a CI class has been defined: Identification rule (Hardware): Serial Number (serial_number, serial_number_type) priority 100; Hardware (serial_number) priority 200; Hardware (name) priority 300; Network Adapter (mac_address, name) priority 400. Two new CI records are imported into the hardware class of the CMDB: CI1: The name of this CI record matches the name of an existing CI record in the CMDB. CI2: The IP address of this CI record matches the IP address of an existing CI record in the CMDB. Which is correct based on the identification rule and the imported CI records?",
       "choices": [
         {
           "id": "A",
@@ -512,9 +643,9 @@
         }
       ],
       "correct_answers": [
-        "C"
+        "B"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384710-exam-cis-df-topic-2-question-5-discussion/",
+      "explanation": "CI1 matches an existing CI on Name, which is an identifier entry, so it is updated. IP address is not a criterion attribute in the rule, so CI2 matches nothing and is inserted as a new CI. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/class-hardware.html",
       "tags": []
     },
     {
@@ -535,8 +666,10 @@
           "text": "Create a scheduled job"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384719-exam-cis-df-topic-3-question-5-discussion/",
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "This is the docs' own Archive example: 'Archive all Linux servers in the Seattle datacenter that haven't been updated for six months'. Archive removes CIs from the active tables and still allows restore during the retention period. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html",
       "tags": []
     },
     {
@@ -561,8 +694,10 @@
           "text": "Affected CI [task_ci] related list"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384732-exam-cis-df-topic-4-question-5-discussion/",
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "Business service offerings identify subscribers by user, company, location, department and group ('Subscribe by'), which tells you which users are impacted. Affected CIs list CIs, not users. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-implement-run-stage.html",
       "tags": []
     },
     {
@@ -587,8 +722,11 @@
           "text": "Delete an unused class, and replace it with the new one"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384363-exam-cis-df-topic-1-question-6-discussion/",
+      "correct_answers": [
+        "A",
+        "C"
+      ],
+      "explanation": "First install/update the CMDB CI Class Models Store app, which adds many ready-made classes (IoT Device already exists). If no suitable class exists, extend an appropriate parent class in CI Class Manager. Don't repurpose, modify or delete base classes, or extend Asset tables for CI data. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/cmdb-ci-class-models/cmdb-ci-class-models.html",
       "tags": [],
       "select_count": 2
     },
@@ -610,8 +748,10 @@
           "text": "Class Switch"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384711-exam-cis-df-topic-2-question-6-discussion/",
+      "correct_answers": [
+        "A"
+      ],
+      "explanation": "Server -> Windows Server (or Linux Server) is parent -> child, so it is a Class Upgrade. Child -> parent is a Downgrade, and moving between sibling branches (e.g. Linux Server -> Windows Server) is a Switch (a downgrade followed by an upgrade). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_ManuallyReclassifyCI.html",
       "tags": []
     },
     {
@@ -639,7 +779,7 @@
       "correct_answers": [
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384916-exam-cis-df-topic-3-question-6-discussion/",
+      "explanation": "The Compliance scorecard is driven by audits: a certification filter selects the servers, a certification template defines expected values (e.g. latest patch), and the audit compares actual values. Audit must be active for Compliance to show results. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html",
       "tags": []
     },
     {
@@ -660,8 +800,10 @@
           "text": "CMDB Workspace"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384919-exam-cis-df-topic-4-question-6-discussion/",
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "Unified Map is included in CMDB Workspace (and Service Graph Workspace). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/unified-map/cmdb-workspace-unified-map.html",
       "tags": []
     },
     {
@@ -682,14 +824,16 @@
           "text": "Use the CSDM Data Foundation Dashboard"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384921-exam-cis-df-topic-5-question-6-discussion/",
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "The CSDM Data Foundations dashboard shows key CSDM indicators per implementation stage (Foundation, Crawl, Walk, Run, Fly) and links to playbooks for remediation. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/csdm-data-foundations-dashboard.html",
       "tags": []
     },
     {
       "id": 29,
       "type": "single_choice",
-      "question": "A Change Manager aims to streamline ITSM processes by automatically populating fields on the Change form when a CI is selected. The Configuration Management team is working to ensure that the Change Group field is populated for all managed CIs.As a result, which base system field on the incident form will be automatically populated after selecting a CI?",
+      "question": "A Change Manager aims to streamline ITSM processes by automatically populating fields on the Change form when a CI is selected. The Configuration Management team is working to ensure that the Change Group field is populated for all managed CIs. As a result, which base system field on the change form will be automatically populated after selecting a CI?",
       "choices": [
         {
           "id": "A",
@@ -708,8 +852,10 @@
           "text": "Change group"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384364-exam-cis-df-topic-1-question-7-discussion/",
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "Selecting a CI fills the task's Assignment group from the CI's Support group (incident) or Change group (change); 'Change group' was previously labeled 'Assignment group' on the CI. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-data-synchronize.html",
       "tags": []
     },
     {
@@ -733,7 +879,7 @@
       "correct_answers": [
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384712-exam-cis-df-topic-2-question-7-discussion/",
+      "explanation": "Static reconciliation rules (source priorities) are core IRE functionality and work without CMDB 360. Only CMDB 360 itself (and its dynamic rules) needs the ITOM Discovery license plugin. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/multisource-cmdb.html",
       "tags": []
     },
     {
@@ -755,9 +901,9 @@
         }
       ],
       "correct_answers": [
-        "A"
+        "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384720-exam-cis-df-topic-3-question-7-discussion/",
+      "explanation": "Duplicate, Orphan and Stale CIs are the Correctness metrics. Completeness covers required and recommended fields, and Compliance covers audits against certification templates. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html",
       "tags": []
     },
     {
@@ -782,8 +928,11 @@
           "text": "Managed by group"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384733-exam-cis-df-topic-4-question-7-discussion/",
+      "correct_answers": [
+        "A",
+        "B"
+      ],
+      "explanation": "The Unified Map filter panel filters by layer count, CI class, relationship type, discovery source, location and CI ownership. Business criticality is not a filter option. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/unified-map/unified-map-configure-filters.html",
       "tags": [],
       "select_count": 2
     },
@@ -805,8 +954,10 @@
           "text": "Application Service Owners"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384922-exam-cis-df-topic-5-question-7-discussion/",
+      "correct_answers": [
+        "B"
+      ],
+      "explanation": "Infrastructure services are owned by Technology Service Owners, who request catalog items for their offerings and define the requirements. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-content-frame-exploring.html",
       "tags": []
     },
     {
@@ -832,15 +983,15 @@
         }
       ],
       "correct_answers": [
-        "D"
+        "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384365-exam-cis-df-topic-1-question-8-discussion/",
+      "explanation": "One application server hosts many application CIs, while each discovered application CI is tied to a single host, so the relationship is one-to-many. (Debated question: the CMDB relationship table could technically store many-to-many.) Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/manage-tech-servs-domain.html",
       "tags": []
     },
     {
       "id": 35,
-      "type": "single_choice",
-      "question": "Which ServiceNow solution creates automatic relationships?",
+      "type": "multiple_choice",
+      "question": "Which ServiceNow solutions create relationships between CIs automatically? (Choose two.)",
       "choices": [
         {
           "id": "A",
@@ -859,9 +1010,13 @@
           "text": "Service Mapping"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384713-exam-cis-df-topic-2-question-8-discussion/",
-      "tags": []
+      "correct_answers": [
+        "B",
+        "D"
+      ],
+      "explanation": "Discovery creates relationships from the TCP connections it finds, and Service Mapping builds the map of CIs and connections in an application service. IntegrationHub ETL only creates relationships you explicitly map, and Workflow Studio doesn't populate the CMDB. Source: https://www.servicenow.com/docs/r/australia/it-operations-management/discovery/r_ApplicationDependencyMapping.html",
+      "tags": [],
+      "select_count": 2
     },
     {
       "id": 36,
@@ -885,8 +1040,10 @@
           "text": "Attestation can be assigned to a Group or an individual, while Data Certification can only be assigned to an individual."
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384721-exam-cis-df-topic-3-question-8-discussion/",
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "Attestation records acknowledgement that a CI still exists; Certification validates specific attribute values. Both policy types can be scheduled and both support the same assignment types (user, group, user field, group field). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html",
       "tags": []
     },
     {
@@ -915,7 +1072,7 @@
         "A",
         "B"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384734-exam-cis-df-topic-4-question-8-discussion/",
+      "explanation": "In the CMDB query, add Incident from the Non-CMDB Tables list and add a location=Seattle filter on the database node. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/use-cmdb-query-builder.html",
       "tags": [],
       "select_count": 2
     },
@@ -945,7 +1102,7 @@
         "B",
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384483-exam-cis-df-topic-5-question-8-discussion/",
+      "explanation": "The CMDB Data Foundations dashboard's Data Management Practices metrics include 'CIs Processed via IRE' and 'Active CIs Updated in Last 90 days'. Failed audits and orphan CIs are CMDB Health Dashboard metrics. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html",
       "tags": [],
       "select_count": 2
     },
@@ -971,8 +1128,10 @@
           "text": "Child"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384538-exam-cis-df-topic-1-question-9-discussion/",
+      "correct_answers": [
+        "C"
+      ],
+      "explanation": "The Added tab lists attributes defined on this class itself; Derived lists attributes inherited from parent classes; All shows both. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_ViewTableDefinitions.html",
       "tags": []
     },
     {
@@ -997,8 +1156,10 @@
           "text": "A new Apache Web Server CI is created."
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384915-exam-cis-df-topic-2-question-9-discussion/",
+      "correct_answers": [
+        "D"
+      ],
+      "explanation": "Version is one of the criterion attributes. After the upgrade the version no longer matches, so no identifier entry matches and the IRE creates a new Apache Web Server CI (if all rules are exhausted without a match, a new CI is created). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_CreateCIIdentificationRule.html",
       "tags": []
     },
     {
@@ -1016,7 +1177,7 @@
         },
         {
           "id": "C",
-          "text": "CSDB Data Foundations Dashboard Playbooks"
+          "text": "CMDB Data Foundations Dashboard Playbooks"
         },
         {
           "id": "D",
@@ -1024,9 +1185,9 @@
         }
       ],
       "correct_answers": [
-        "A"
+        "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384532-exam-cis-df-topic-3-question-9-discussion/",
+      "explanation": "'Hardware CIs with Serial Numbers' is a CMDB Data Foundations dashboard metric, linked to the playbook 'Manage Hardware CIs with missing Serial Numbers'. The CMDB Health Dashboard has remediation tasks, not playbooks. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html",
       "tags": []
     },
     {
@@ -1051,8 +1212,11 @@
           "text": "It automates the approval process for change management."
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384923-exam-cis-df-topic-5-question-9-discussion/",
+      "correct_answers": [
+        "A",
+        "B"
+      ],
+      "explanation": "The dashboard trends non-compliant CIs over time and gives actionable insight (with playbooks) to improve data quality. It doesn't remove duplicates itself or approve changes. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-foundations-dashboard.html",
       "tags": [],
       "select_count": 2
     },
@@ -1078,8 +1242,11 @@
           "text": "Ensure that the business rule to update CI fields on change on the asset table is active"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384539-exam-cis-df-topic-1-question-10-discussion/",
+      "correct_answers": [
+        "C",
+        "D"
+      ],
+      "explanation": "Asset and CI records stay synchronized through two base-system business rules: 'Update CI fields on change' on alm_asset and 'Update Asset fields on change' on cmdb_ci. Source: https://www.servicenow.com/docs/r/australia/it-asset-management/asset-management/c_ManagingAssets.html",
       "tags": [],
       "select_count": 2
     },
@@ -1094,7 +1261,7 @@
         },
         {
           "id": "B",
-          "text": "State CIs"
+          "text": "Stale CIs"
         },
         {
           "id": "C",
@@ -1109,8 +1276,11 @@
           "text": "Upgraded CIs"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384481-exam-cis-df-topic-3-question-10-discussion/",
+      "correct_answers": [
+        "B",
+        "C"
+      ],
+      "explanation": "Duplicate, Orphan and Stale CIs are the Correctness metrics. Completeness covers required and recommended fields, and Compliance covers audits against certification templates. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html",
       "tags": [],
       "select_count": 2
     },
@@ -1136,8 +1306,11 @@
           "text": "Route the change dynamically"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384924-exam-cis-df-topic-5-question-10-discussion/",
+      "correct_answers": [
+        "C",
+        "D"
+      ],
+      "explanation": "A service-aware CMDB lets Change understand the impact of a change on services and offerings, and route changes dynamically using the CI's change group. Source: https://www.servicenow.com/docs/r/australia/it-service-management/change-management/itsm-change-use-case-example.html",
       "tags": [],
       "select_count": 2
     },
@@ -1167,8 +1340,10 @@
           "text": "Managed by Group"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384540-exam-cis-df-topic-1-question-11-discussion/",
+      "correct_answers": [
+        "D"
+      ],
+      "explanation": "Selecting a CI fills the task's Assignment group from the CI's Support group (incident) or Change group (change); 'Change group' was previously labeled 'Assignment group' on the CI. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-data-synchronize.html",
       "tags": []
     },
     {
@@ -1192,7 +1367,7 @@
       "correct_answers": [
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384715-exam-cis-df-topic-2-question-11-discussion/",
+      "explanation": "Data that discovery can't see should come from its authoritative source through a scheduled import. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/c_OptionsToPopulateCMDB.html",
       "tags": []
     },
     {
@@ -1218,9 +1393,9 @@
         }
       ],
       "correct_answers": [
-        "D"
+        "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384722-exam-cis-df-topic-3-question-11-discussion/",
+      "explanation": "Health inclusion rules have an 'Applies to metric' field, so one metric (here Orphan) can evaluate fewer Server CIs than another. A Health-type CMDB group scopes a whole dashboard view, not a single metric. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-health-inclusion-rule.html",
       "tags": []
     },
     {
@@ -1234,7 +1409,7 @@
         },
         {
           "id": "B",
-          "text": "Streaming incident and change management"
+          "text": "Streamlining incident and change management"
         },
         {
           "id": "C",
@@ -1245,8 +1420,11 @@
           "text": "Automating maintenance for CI relationships"
         }
       ],
-      "correct_answers": [],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384925-exam-cis-df-topic-5-question-11-discussion/",
+      "correct_answers": [
+        "B",
+        "C"
+      ],
+      "explanation": "The CMDB streamlines incident and change management with impact and dependency data and strengthens operational resilience. Financial data belongs to Asset Management. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cnfig-mgmt-and-cmdb.html",
       "tags": [],
       "select_count": 2
     },
@@ -1273,9 +1451,10 @@
         }
       ],
       "correct_answers": [
+        "B",
         "C"
       ],
-      "explanation": "https://www.examtopics.com/discussions/servicenow/view/384705-exam-cis-df-topic-1-question-12-discussion/",
+      "explanation": "First install/update the CMDB CI Class Models Store app, which adds many ready-made classes (IoT Device already exists). If no suitable class exists, extend an appropriate parent class in CI Class Manager. Don't repurpose, modify or delete base classes, or extend Asset tables for CI data. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/cmdb-ci-class-models/cmdb-ci-class-models.html",
       "tags": [],
       "select_count": 2
     }
@@ -1283,6 +1462,7 @@
   "exam_metadata": {
     "title": "CIS-DF ET - 1",
     "source": "CIS-DF ET - 1.json",
-    "total_questions": 50
+    "total_questions": 50,
+    "verification": "Answer key verified against official ServiceNow product documentation (Australia, Zurich and Yokohama releases) on 2026-11-05."
   }
 }

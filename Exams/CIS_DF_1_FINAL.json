@@ -2,7 +2,8 @@
   "exam_metadata": {
     "title": "CIS - Data Foundations (CMDB & CSDM) - 1",
     "source": "CIS_-_DF_1_-_FINAL.pdf",
-    "total_questions": 75
+    "total_questions": 75,
+    "verification": "Answer key verified against official ServiceNow product documentation (Australia, Zurich and Yokohama releases) on 2026-11-05."
   },
   "questions": [
     {
@@ -30,9 +31,9 @@
         { "id": "C", "text": "Reconciliation" },
         { "id": "D", "text": "Retire" }
       ],
-      "correct_answers": ["A", "B"],
+      "correct_answers": ["B", "D"],
       "select_count": 2,
-      "explanation": "CMDB Data Manager supports De-duplication and Archive policy types, among others such as Attestation, Certification, and Retire.",
+      "explanation": "CMDB Data Manager policy types are Retire, Archive, Delete, Attestation, Certification and Delete CMDB Related Entry. De-duplication is handled by de-duplication tasks/templates and reconciliation by the IRE - neither is a Data Manager policy type. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html",
       "tags": ["cmdb-data-manager", "policies"]
     },
     {
@@ -45,9 +46,9 @@
         { "id": "C", "text": "Remediate duplicate CI records" },
         { "id": "D", "text": "Create a new CMDB class" }
       ],
-      "correct_answers": ["A", "C"],
+      "correct_answers": ["B", "C"],
       "select_count": 2,
-      "explanation": "From the CMDB Workspace, you can Execute ServiceNow Discovery and Remediate duplicate CI records.",
+      "explanation": "CMDB Workspace hosts the De-duplication dashboard/templates for remediating duplicate CIs and CMDB Data Manager / Data Certification, where certification policies are created. Discovery is run from Discovery tools (e.g. Discovery Admin Workspace) and classes are created in CI Class Manager, which the workspace only links to. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/data-cert-exp-cmdb-workspace.html",
       "tags": ["cmdb-workspace"]
     },
     {
@@ -59,8 +60,8 @@
         { "id": "B", "text": "Any Scheduled Jobs for the SCCM Service Graph Connector will need to be configured." },
         { "id": "C", "text": "Any updates for the SCCM Service Graph Connector will be skipped during the upgrade." }
       ],
-      "correct_answers": ["B"],
-      "explanation": "When the query for a Service Graph Connector is changed, any Scheduled Jobs for that connector will need to be reconfigured.",
+      "correct_answers": ["C"],
+      "explanation": "Changing an SGC's data source query, script or mapping makes it a customer customization. On upgrade the platform keeps your version, logs a Skipped Update/skipped change to review, and you merge manually - nothing goes inactive and the upgrade doesn't stop. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/service-graph-connectors/upgrade-sccm-newer-version.html",
       "tags": ["service-graph-connector", "sccm"]
     },
     {
@@ -197,7 +198,7 @@
         { "id": "D", "text": "Reconciliation Rules" }
       ],
       "correct_answers": ["A"],
-      "explanation": "Data Refresh Rules allow a lower-priority data source to update records after a specified period of inactivity from a higher-priority source.",
+      "explanation": "A data refresh rule marks a CI as stale for a given discovery source after a set period without updates, so a lower-priority authorized source can then update it. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-datasource-staleness-rule.html",
       "tags": ["reconciliation", "data-refresh-rules"]
     },
     {
@@ -210,8 +211,8 @@
         { "id": "C", "text": "7 days" },
         { "id": "D", "text": "60 days" }
       ],
-      "correct_answers": ["B"],
-      "explanation": "The default duration for the Staleness metric in the CMDB Health Dashboard Correctness Scorecard is 30 days.",
+      "correct_answers": ["D"],
+      "explanation": "The base system includes a default staleness rule on the Configuration Item [cmdb_ci] class with an Effective Duration of 60 days; it applies to all child classes unless a class-specific rule overrides it. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/r_CMDBHealthMetrics.html",
       "tags": ["cmdb-health-dashboard", "staleness", "correctness"]
     },
     {
@@ -280,10 +281,10 @@
       "correct_mapping": {
         "target1": "item2",
         "target2": "item1",
-        "target3": "item4",
+        "target3": "item5",
         "target4": "item3"
       },
-      "explanation": "Each CMDB ingestion tool has a specific design architecture: Agent Client Collector uses automated agent-based solutions, Import Sets use organization-built transform maps, Service Graph Connectors handle third-party integrations, and ServiceNow Discovery uses automated agentless patterns.",
+      "explanation": "Agent Client Collector = agent-based, running patterns; Discovery = agentless, running patterns; Import Sets = organization-built using transform maps; Service Graph Connectors = pre-built Store integrations that minimize customization. 'Third-party integrations from other vendors' is the distractor. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-sgc-intro.html",
       "tags": ["cmdb-ingestion", "architecture"]
     },
     {
@@ -339,7 +340,7 @@
       ],
       "correct_answers": ["B", "C"],
       "select_count": 2,
-      "explanation": "The filter matches OS containing 'Server' (Windows Server 2022 Datacenter) or containing 'Linux' (Linux CentOS). AIX doesn't contain either term, and Windows 2019 Datacenter doesn't contain 'Server' as a standalone term in the same way.",
+      "explanation": "An OR condition matches a record when either clause is true: 'Windows Server 2022 Datacenter' contains 'Server' and 'Linux CentOS' contains 'Linux'. 'AIX' and 'Windows 2019 Datacenter' contain neither string, so they are not in scope of the policy.",
       "tags": ["cmdb-data-manager", "certification", "filters"]
     },
     {
@@ -451,8 +452,8 @@
         { "id": "C", "text": "Class Upgrade" },
         { "id": "D", "text": "Class Downgrade" }
       ],
-      "correct_answers": ["A"],
-      "explanation": "When a CI is moved from one class to a different class (same hierarchy level or to a sibling class) through the IRE, this is called a Class Switch.",
+      "correct_answers": ["C"],
+      "explanation": "Server -> Windows Server (or Linux Server) is parent -> child, so it is a Class Upgrade. Child -> parent is a Downgrade, and moving between sibling branches (e.g. Linux Server -> Windows Server) is a Switch (a downgrade followed by an upgrade). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_ManuallyReclassifyCI.html",
       "tags": ["ire", "class-management"]
     },
     {
@@ -482,7 +483,7 @@
       ],
       "correct_answers": ["A", "D"],
       "select_count": 2,
-      "explanation": "Change group and Support group values are automatically synchronized on CIs through Technical Service Offerings and dynamic CI groups.",
+      "explanation": "Set Support group, Change group or Managed by group on a Technology Management Offering linked to a Dynamic CI Group and the values are applied to all its CIs. Approval, CMDB and Owned by groups are not synced. (Managed by group is also synced.) Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-enable-tso.html",
       "tags": ["csdm", "technical-service-offerings", "dynamic-ci-groups"]
     },
     {
@@ -496,7 +497,7 @@
         { "id": "D", "text": "Run" }
       ],
       "correct_answers": ["B"],
-      "explanation": "The Walk tab in the CSDM Data Foundation Dashboard provides metrics on the alignment of Technical Services and Technical Service Offerings with best practices.",
+      "explanation": "Walk adds Technology Management Services, Technology Management Offerings and Dynamic CI groups, so support and technical approval groups can be synchronized onto CIs from the offering. Run adds business services and offerings. Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-datafdn-dash-walk-tab.html",
       "tags": ["csdm", "data-foundations-dashboard"]
     },
     {
@@ -584,7 +585,7 @@
     {
       "id": 39,
       "type": "single_choice",
-      "question": "Two new CI records are imported into the hardware class of the CMDB:\nCI1: The name of this CI record matches the name of an existing CI record in the CMDB.\nCI2: The IP address of this CI record matches the IP address of an existing CI record in the CMDB.\nGiven the identification rule (Hardware: serial_number p100, Hardware: name p200, Network Adapter: mac_address,name p400), which is correct?",
+      "question": "Two new CI records are imported into the hardware class of the CMDB:\nCI1: The name of this CI record matches the name of an existing CI record in the CMDB.\nCI2: The IP address of this CI record matches the IP address of an existing CI record in the CMDB.\nGiven the identification rule (Serial Number: serial_number, serial_number_type p100; Hardware: serial_number p200; Hardware: name p300; Network Adapter: mac_address, name p400), which is correct?",
       "choices": [
         { "id": "A", "text": "CI1 and CI2 both will be updated with matching records." },
         { "id": "B", "text": "CI1 will be updated with matching record and CI2 will be inserted as new record." },
@@ -592,7 +593,7 @@
         { "id": "D", "text": "CI1 and CI2 both will be inserted as new records." }
       ],
       "correct_answers": ["B"],
-      "explanation": "CI1 matches on name (which is in the identification rule at priority 300), so it will be updated. CI2 matches on IP address, which is not part of the Hardware identification rule, so it will be inserted as a new record.",
+      "explanation": "CI1 matches an existing CI on Name, which is an identifier entry, so it is updated. IP address is not a criterion attribute in the rule, so CI2 matches nothing and is inserted as a new CI. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/class-hardware.html",
       "tags": ["ire", "identification-rules"]
     },
     {
@@ -607,7 +608,7 @@
       ],
       "correct_answers": ["A", "C"],
       "select_count": 2,
-      "explanation": "Playbooks in the CMDB Data Foundations Dashboard provide Problem Analysis and Problem Overview documentation to help analyze and fix issues.",
+      "explanation": "Each Data Foundations remediation playbook gives a summary of the indicator, an overview of the problem, why it is important to address it, and then how to fix or improve the score. So expect a problem overview and an analysis of the issue - not automated remediations. Source: ServiceNow University KB0012913 (CIS-DF exam blueprint); ServiceNow University course 'CMDB Fundamentals' (Australia)",
       "tags": ["playbooks", "data-foundations-dashboard"]
     },
     {
@@ -671,7 +672,7 @@
         { "id": "E", "text": "Certification" }
       ],
       "correct_answers": ["A"],
-      "explanation": "Attestation policy is used to confirm that CIs actually exist by having someone verify their existence.",
+      "explanation": "Attestation policies create tasks in which owners confirm the real device or application still exists (Attested/Rejected). Certification validates attribute values, not existence. 'Promotion' and 'Verification' are not policy types. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html",
       "tags": ["cmdb-data-manager", "attestation"]
     },
     {
@@ -752,9 +753,9 @@
         { "id": "C", "text": "Offers remediation options to address and improve poorly performing metrics" },
         { "id": "D", "text": "Offers automated scripts to resolve poorly performing metrics" }
       ],
-      "correct_answers": ["B", "C"],
+      "correct_answers": ["A", "C"],
       "select_count": 2,
-      "explanation": "Playbooks on the CMDB Data Foundation Dashboard offer remediation templates and remediation options to address and improve poorly performing metrics.",
+      "explanation": "Each Data Foundations remediation playbook gives a summary of the indicator, an overview of the problem, why it is important to address it, and then how to fix or improve the score. That means insight into what happens if the metric isn't fixed (downstream impact) plus remediation options - not templates or automated scripts. Source: ServiceNow University KB0012913 (CIS-DF exam blueprint); ServiceNow University course 'CMDB Fundamentals' (Australia)",
       "tags": ["playbooks", "data-foundations-dashboard"]
     },
     {
@@ -767,7 +768,7 @@
         { "id": "C", "text": "Windows Support" }
       ],
       "correct_answers": ["C"],
-      "explanation": "The Technical Service Offering takes precedence over CI Class Manager values for group assignments. The Technical Service Offering specifies 'Windows Support' as the Managed By Group.",
+      "explanation": "If Support, Change or Managed by group is set on the Technology Management Offering, the offering's value takes precedence; the CI Class Manager value only applies to CIs no offering manages. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-enable-tso.html",
       "tags": ["csdm", "technical-service-offerings", "group-management"]
     },
     {
@@ -801,7 +802,7 @@
     },
     {
       "id": 54,
-      "type": "multiple_choice",
+      "type": "single_choice",
       "question": "A Configuration Management team has successfully developed a healthy and trusted CMDB. Which field on a Change Request form is automatically populated after a CI is selected that references an appropriate change group?",
       "choices": [
         { "id": "A", "text": "Managed by Group" },
@@ -810,9 +811,8 @@
         { "id": "D", "text": "Support Group" },
         { "id": "E", "text": "Assigned to" }
       ],
-      "correct_answers": ["B", "C"],
-      "select_count": 2,
-      "explanation": "When a CI is selected on a Change Request form, the Change Group and Assignment Group fields are automatically populated.",
+      "correct_answers": ["C"],
+      "explanation": "Selecting a CI fills the task's Assignment group from the CI's Support group (incident) or Change group (change); 'Change group' was previously labeled 'Assignment group' on the CI. A change request has no 'Change Group' field - that's the CI's field. Source: https://www.servicenow.com/docs/r/australia/it-service-management/change-management/itsm-change-use-case-product-view.html",
       "tags": ["change-management", "cmdb-value"]
     },
     {
@@ -825,22 +825,22 @@
         { "id": "C", "text": "Scripted queries" },
         { "id": "D", "text": "Saved queries" }
       ],
-      "correct_answers": ["A", "B"],
+      "correct_answers": ["B", "D"],
       "select_count": 2,
-      "explanation": "CMDB groups can be created using tag-based queries and encoded queries.",
+      "explanation": "A CMDB group is populated by manually adding CIs, by saved CMDB Query Builder queries, or by encoded queries. Tag-based population belongs to tag-based application services, not CMDB groups. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-groups.html",
       "tags": ["cmdb-groups"]
     },
     {
       "id": 56,
       "type": "single_choice",
-      "question": "A CMDB Administrator wants to configure IRE rules for the CMDB. The CMDB Administrator opens CI Class Manager and sees the Health Inclusions Rules tab available under a CI Class. How are these rules utilized by the IRE?",
+      "question": "A CMDB Administrator wants to configure IRE rules for the CMDB. The CMDB Administrator opens CI Class Manager and sees the Identification Inclusion Rules option under a CI class's Identification Rule. How are these rules utilized by the IRE?",
       "choices": [
         { "id": "A", "text": "To narrow the scope of CIs included in the identification process" },
         { "id": "B", "text": "To reduce the data ingested into the CMDB" },
         { "id": "C", "text": "To reconcile specific attributes based on data sources" }
       ],
       "correct_answers": ["A"],
-      "explanation": "Health Inclusion Rules in CI Class Manager are used by the IRE to narrow the scope of CIs included in the identification process.",
+      "explanation": "Identification inclusion rules (CI Class Manager > Identification Rule > Inclusion Rule) narrow the scope of existing CIs the IRE considers when matching (e.g. only Operational CIs). Health inclusion rules are a different feature: they only filter which CIs count in CMDB Health calculations. Note: some exam versions word this stem as 'Health Inclusion Rules', but the IRE behaviour described is identification inclusion. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/create-id-inclusion-rule.html",
       "tags": ["ire", "ci-class-manager", "health-inclusion-rules"]
     },
     {
@@ -867,7 +867,7 @@
         { "id": "D", "text": "Certification" }
       ],
       "correct_answers": ["C"],
-      "explanation": "Attestation policy is used to validate the existence of CIs by having responsible parties confirm whether a CI still exists.",
+      "explanation": "Attestation policies create tasks in which owners confirm the real device or application still exists (Attested/Rejected). Certification validates attribute values, not existence. 'Promotion' and 'Verification' are not policy types. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/cmdb-data-management.html",
       "tags": ["cmdb-data-manager", "attestation"]
     },
     {
@@ -932,11 +932,11 @@
       ],
       "correct_mapping": {
         "target1": "ServiceMappingTopDown",
-        "target2": "ServiceMappingConnectionSuggestion",
-        "target3": "TagBased",
+        "target2": "TagBased",
+        "target3": "ServiceMappingConnectionSuggestion",
         "target4": "DynamicCIGroup"
       },
-      "explanation": "Each application service type has a specific use case in service mapping.",
+      "explanation": "Top-down (pattern-based) mapping gives a high-fidelity map for mission-critical services; tag-based mapping fits cloud, container and VM environments using cloud tags; ML connection suggestions use fingerprinting for custom-built apps; Dynamic CI groups fit small services defined by a CMDB query. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/application-services.html",
       "tags": ["service-mapping", "application-services"]
     },
     {
@@ -980,8 +980,8 @@
         { "id": "D", "text": "First discovered (first_discovered)" },
         { "id": "E", "text": "Most recent discovery (last_discovery)" }
       ],
-      "correct_answers": ["E"],
-      "explanation": "The Staleness metric uses the 'Most recent discovery' (last_discovery) field to calculate how long since a CI was last discovered.",
+      "correct_answers": ["C"],
+      "explanation": "A CI is stale if it was not updated - based on the Updated [sys_updated_on] field - within the staleness rule's Effective Duration (60 days by default). Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/configuration-management-database-cmdb/t_CreateCMDBHealthStaleRule.html",
       "tags": ["cmdb-health-dashboard", "correctness", "staleness"]
     },
     {
@@ -993,8 +993,8 @@
         { "id": "B", "text": "Application Owner, Application Service Owner" },
         { "id": "C", "text": "Customer Service Manager, Infrastructure Manager" }
       ],
-      "correct_answers": ["A"],
-      "explanation": "The CSDM Crawl Stage focuses on foundational data, and key stakeholders are Business Service Manager and Technology Service Owner.",
+      "correct_answers": ["B"],
+      "explanation": "The Crawl stage focuses on applications - Business Application, Application Service (service instance), Application and Server - so Application Owners and Application Service Owners drive it. Technology service owners come in at Walk and business service owners at Run. Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-implement-crawl-stage.html",
       "tags": ["csdm", "crawl-stage"]
     },
     {
@@ -1020,8 +1020,8 @@
         { "id": "C", "text": "Application > Runs on::Runs > Server" },
         { "id": "D", "text": "Application > Used by::Uses > Server" }
       ],
-      "correct_answers": ["B"],
-      "explanation": "The standard CMDB relationship between an application and a server is 'Application > Runs::Runs On > Server'.",
+      "correct_answers": ["C"],
+      "explanation": "Relationship names are read from the parent's side: the Application (parent) 'Runs on' the Server (child) and the Server 'Runs' the Application, i.e. Application > Runs on::Runs > Server. Source: https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/manage-tech-servs-domain.html",
       "tags": ["relationships", "cmdb"]
     },
     {
@@ -1062,8 +1062,8 @@
         { "id": "D", "text": "Run" },
         { "id": "E", "text": "Walk" }
       ],
-      "correct_answers": ["E"],
-      "explanation": "The Walk stage of CSDM maps the relationships between Business Service Offerings and the Application Services they depend on.",
+      "correct_answers": ["D"],
+      "explanation": "Run adds Business Service Portfolio, Business Services and Business Service Offerings and relates them to the technology they consume (service instances) - enabling business-service impact assessment. Source: CSDM 5 white paper (ServiceNow); https://www.servicenow.com/docs/r/australia/servicenow-platform/common-service-data-model-csdm/csdm-datafdn-dash-run-tab.html",
       "tags": ["csdm", "walk-stage"]
     },
     {
