@@ -1,0 +1,152 @@
+/*
+ * Design tokens. Light is the default; dark applies when the OS prefers it (unless the user
+ * picked light) or when the user picked dark explicitly.
+ */
+:root {
+  --font-display: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+  --radius-lg: 18px;
+  --radius: 13px;
+  --radius-sm: 9px;
+  --radius-xs: 6px;
+
+  --bg: #f2efe7;
+  --bg-dot: rgba(30, 32, 38, 0.075);
+  --surface: #fffdf8;
+  --surface-2: #f8f5ed;
+  --surface-3: #eee9de;
+  --line: #e3ddd0;
+  --line-strong: #cbc3b2;
+  --text: #17191f;
+  --text-2: #484c56;
+  --muted: #777a83;
+
+  --accent: #0f6e5a;
+  --accent-ink: #ffffff;
+  --accent-soft: #d6eee5;
+  --focus: #0f6e5a;
+
+  --ok: #17845a;
+  --ok-soft: #dcf1e5;
+  --bad: #c03a33;
+  --bad-soft: #f8dfdb;
+  --warn: #a8690f;
+  --warn-soft: #f6e9cf;
+
+  --d-configuration: #2f67d8;
+  --d-ingest: #7448d0;
+  --d-govern: #0f8a69;
+  --d-insight: #b86e0a;
+  --d-csdm: #c93b72;
+
+  --tile-new: #e4ddcf;
+  --tile-correct: #8fd3b0;
+  --tile-mastered: #17845a;
+  --tile-wrong: #e0796f;
+
+  --heat-0: #e7e1d4;
+  --heat-1: #b7e0cb;
+  --heat-2: #74c39f;
+  --heat-3: #2f9b6f;
+  --heat-4: #0f6e5a;
+
+  --shadow: 0 1px 0 rgba(23, 25, 31, 0.04), 0 10px 28px -16px rgba(40, 30, 10, 0.28);
+  --shadow-pop: 0 18px 40px -18px rgba(23, 25, 31, 0.35);
+  --glow: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg: #0a0d12;
+    --bg-dot: rgba(255, 255, 255, 0.05);
+    --surface: #10151d;
+    --surface-2: #151b25;
+    --surface-3: #1c2330;
+    --line: #222a37;
+    --line-strong: #323c4d;
+    --text: #e8edf4;
+    --text-2: #b3bcc9;
+    --muted: #7f8a99;
+
+    --accent: #5ee6c8;
+    --accent-ink: #04241d;
+    --accent-soft: rgba(94, 230, 200, 0.12);
+    --focus: #5ee6c8;
+
+    --ok: #4fdc8e;
+    --ok-soft: rgba(79, 220, 142, 0.13);
+    --bad: #ff7a72;
+    --bad-soft: rgba(255, 122, 114, 0.13);
+    --warn: #f9c25c;
+    --warn-soft: rgba(249, 194, 92, 0.13);
+
+    --d-configuration: #79a6ff;
+    --d-ingest: #b394ff;
+    --d-govern: #45d9a8;
+    --d-insight: #ffc463;
+    --d-csdm: #ff7eab;
+
+    --tile-new: #1d2430;
+    --tile-correct: #2c7d5a;
+    --tile-mastered: #4fdc8e;
+    --tile-wrong: #c4504a;
+
+    --heat-0: #1a212c;
+    --heat-1: #164536;
+    --heat-2: #1f6e52;
+    --heat-3: #2fa87a;
+    --heat-4: #5ee6c8;
+
+    --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 30px -18px rgba(0, 0, 0, 0.8);
+    --shadow-pop: 0 20px 44px -18px rgba(0, 0, 0, 0.9);
+    --glow: rgba(94, 230, 200, 0.18);
+  }
+}
+
+:root[data-theme='dark'] {
+  --bg: #0a0d12;
+  --bg-dot: rgba(255, 255, 255, 0.05);
+  --surface: #10151d;
+  --surface-2: #151b25;
+  --surface-3: #1c2330;
+  --line: #222a37;
+  --line-strong: #323c4d;
+  --text: #e8edf4;
+  --text-2: #b3bcc9;
+  --muted: #7f8a99;
+
+  --accent: #5ee6c8;
+  --accent-ink: #04241d;
+  --accent-soft: rgba(94, 230, 200, 0.12);
+  --focus: #5ee6c8;
+
+  --ok: #4fdc8e;
+  --ok-soft: rgba(79, 220, 142, 0.13);
+  --bad: #ff7a72;
+  --bad-soft: rgba(255, 122, 114, 0.13);
+  --warn: #f9c25c;
+  --warn-soft: rgba(249, 194, 92, 0.13);
+
+  --d-configuration: #79a6ff;
+  --d-ingest: #b394ff;
+  --d-govern: #45d9a8;
+  --d-insight: #ffc463;
+  --d-csdm: #ff7eab;
+
+  --tile-new: #1d2430;
+  --tile-correct: #2c7d5a;
+  --tile-mastered: #4fdc8e;
+  --tile-wrong: #c4504a;
+
+  --heat-0: #1a212c;
+  --heat-1: #164536;
+  --heat-2: #1f6e52;
+  --heat-3: #2fa87a;
+  --heat-4: #5ee6c8;
+
+  --shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset, 0 12px 30px -18px rgba(0, 0, 0, 0.8);
+  --shadow-pop: 0 20px 44px -18px rgba(0, 0, 0, 0.9);
+  --glow: rgba(94, 230, 200, 0.18);
+}

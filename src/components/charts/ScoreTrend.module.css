@@ -1,0 +1,81 @@
+.wrap {
+  min-width: 0;
+}
+
+.summary {
+  display: flex;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.summary b {
+  font-family: var(--font-mono);
+  color: var(--text);
+}
+
+.summary b.ok {
+  color: var(--ok);
+}
+
+.summary b.bad {
+  color: var(--bad);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.grid {
+  stroke: var(--line);
+  stroke-width: 1;
+}
+
+.axis,
+.passLabel {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  fill: var(--muted);
+}
+
+.pass {
+  stroke: var(--warn);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 4;
+}
+
+.passLabel {
+  fill: var(--warn);
+}
+
+.line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.dotOk,
+.dotBad {
+  stroke: var(--surface);
+  stroke-width: 1.5;
+}
+
+.dotOk {
+  fill: var(--ok);
+}
+
+.dotBad {
+  fill: var(--bad);
+}
+
+.empty {
+  font-size: 13px;
+  color: var(--muted);
+  padding: 18px 0;
+}

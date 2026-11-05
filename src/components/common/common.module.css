@@ -1,0 +1,197 @@
+/* ---------- StatTile ---------- */
+.stat {
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  min-width: 0;
+}
+
+.statHead {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.statValue {
+  margin-top: 6px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.statHint {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.ok .statValue {
+  color: var(--ok);
+}
+
+.bad .statValue {
+  color: var(--bad);
+}
+
+.warn .statValue {
+  color: var(--warn);
+}
+
+.accent .statValue {
+  color: var(--accent);
+}
+
+/* ---------- DomainChip ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 24px;
+  padding: 0 10px 0 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, currentColor 12%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.chip i {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+/* ---------- Segmented ---------- */
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface-2);
+}
+
+.segmented button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.segmented button:hover {
+  color: var(--text);
+}
+
+.segmented .segActive {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.segCount {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+/* ---------- Explanation ---------- */
+.explanation {
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.explanation a {
+  overflow-wrap: anywhere;
+}
+
+.sources {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-2);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+a.source:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- StatusBar ---------- */
+.statusBar {
+  display: flex;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--tile-new);
+}
+
+.statusBar span {
+  height: 100%;
+  transition: width 0.6s ease;
+}
+
+/* ---------- EmptyState ---------- */
+.empty {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-2);
+}
+
+.emptyIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: var(--surface-3);
+  color: var(--muted);
+}
+
+.empty h3 {
+  font-size: 18px;
+  color: var(--text);
+}
+
+.emptyBody {
+  max-width: 420px;
+  font-size: 14px;
+}

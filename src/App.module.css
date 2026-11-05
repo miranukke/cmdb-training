@@ -1,0 +1,20 @@
+.app {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 20px 40px;
+}
+
+@media (max-width: 560px) {
+  .app {
+    padding: 0 16px 32px;
+  }
+}
+
+.footer {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+  color: var(--muted);
+}
