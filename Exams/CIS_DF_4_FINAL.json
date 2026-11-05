@@ -1460,7 +1460,7 @@
     }
   ],
   "exam_metadata": {
-    "title": "CIS-DF ET - 1",
+    "title": "CIS - Data Foundations (CMDB & CSDM) - 4",
     "source": "CIS-DF ET - 1.json",
     "total_questions": 50,
     "verification": "Answer key verified against official ServiceNow product documentation (Australia, Zurich and Yokohama releases) on 2026-11-05."
